@@ -20,7 +20,7 @@ const CATS = ["Economía", "Salud", "Servicios", "Educación", "Tecnología", "S
 
 // ---------- Screen 1 ----------
 export const submitProposal = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) =>
+  .validator((d: unknown) =>
     z.object({
       contenido: z.string().trim().min(5).max(1000),
       tipo: z.enum(["Quiero", "Me gusta", "No me gusta"]),
@@ -60,7 +60,7 @@ export const submitProposal = createServerFn({ method: "POST" })
 
 // ---------- Screen 2 ----------
 export const loadProfile = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ secret: secretSchema, create: z.boolean().optional() }).parse(d))
+  .validator((d: unknown) => z.object({ secret: secretSchema, create: z.boolean().optional() }).parse(d))
   .handler(async ({ data }) => {
     let u = await findUser(data.secret);
     if (!u && data.create) {
@@ -74,7 +74,7 @@ export const loadProfile = createServerFn({ method: "POST" })
   });
 
 export const saveProfile = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) =>
+  .validator((d: unknown) =>
     z.object({
       secret: secretSchema,
       genero: z.string().nullable(),
@@ -104,7 +104,7 @@ const filterSchema = z.object({
 export type FeedFilters = z.infer<typeof filterSchema>;
 
 export const listProposals = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ offset: z.number().int().min(0), filters: filterSchema }).parse(d))
+  .validator((d: unknown) => z.object({ offset: z.number().int().min(0), filters: filterSchema }).parse(d))
   .handler(async ({ data }) => {
     const s = await db();
     const f = data.filters;
@@ -141,7 +141,7 @@ export const listProposals = createServerFn({ method: "POST" })
   });
 
 export const reactProposal = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) =>
+  .validator((d: unknown) =>
     z.object({ secret: secretSchema, id: z.number().int(), tipo: z.enum(["Apoyar", "Discrepar"]) }).parse(d),
   )
   .handler(async ({ data }) => {
@@ -159,7 +159,7 @@ export const reactProposal = createServerFn({ method: "POST" })
 type Insight = { prioridades: { tema: string; puntaje: number }[]; palabras: { texto: string; peso: number }[]; resumen: string };
 
 export const getInsights = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ estado: z.string().optional(), query: z.string().max(300).optional() }).parse(d))
+  .validator((d: unknown) => z.object({ estado: z.string().optional(), query: z.string().max(300).optional() }).parse(d))
   .handler(async ({ data }) => {
     const s = await db();
     const { data: all } = await s
@@ -237,7 +237,7 @@ export const listPolls = createServerFn({ method: "GET" }).handler(async () => {
 });
 
 export const unlockVoting = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ secret: secretSchema }).parse(d))
+  .validator((d: unknown) => z.object({ secret: secretSchema }).parse(d))
   .handler(async ({ data }) => {
     const u = await findUser(data.secret);
     if (!u) return null;
@@ -247,7 +247,7 @@ export const unlockVoting = createServerFn({ method: "POST" })
   });
 
 export const castVote = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) =>
+  .validator((d: unknown) =>
     z.object({ secret: secretSchema, id: z.number().int(), opcion: z.enum(["SI", "NO", "ABSTENCION"]) }).parse(d),
   )
   .handler(async ({ data }) => {
@@ -264,7 +264,7 @@ export const castVote = createServerFn({ method: "POST" })
   });
 
 export const exportPollCsv = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ id: z.number().int() }).parse(d))
+  .validator((d: unknown) => z.object({ id: z.number().int() }).parse(d))
   .handler(async ({ data }) => {
     const s = await db();
     const { data: p } = await s.from("votaciones_convocadas").select("*").eq("id_votacion", data.id).single();
