@@ -155,6 +155,23 @@ export const reactProposal = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
+// Deliberately project only public activity metadata; never expose identity hashes or profiles.
+export const getProposalActivity = createServerFn({ method: "POST" })
+  .inputValidator((d: unknown) => z.object({ id: z.number().int().positive() }).parse(d))
+  .handler(async ({ data }) => {
+    const s = await db();
+    const { data: rows, error } = await s.from("propuesta_actividad")
+      .select("id, id_usuario, voto_tipo, cambio_apoyos, fecha_interaccion")
+      .eq("id_propuesta", data.id)
+      .order("id", { ascending: true });
+    if (error) throw new Error("No se pudo cargar la actividad");
+    return (rows ?? []).map((r) => ({
+      id: r.id, user: r.id_usuario,
+      action: r.voto_tipo === "Apoyar" ? "Apoyar" as const : "Discrepar" as const,
+      timestamp: r.fecha_interaccion, supportDelta: r.cambio_apoyos,
+    }));
+  });
+
 // ---------- Screen 4 ----------
 type Insight = { prioridades: { tema: string; puntaje: number }[]; palabras: { texto: string; peso: number }[]; resumen: string };
 

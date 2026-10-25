@@ -50,6 +50,48 @@ export type Database = {
           },
         ]
       }
+      propuesta_actividad: {
+        Row: {
+          cambio_apoyos: number
+          fecha_interaccion: string | null
+          id: number
+          id_propuesta: number
+          id_usuario: number
+          voto_tipo: string
+        }
+        Insert: {
+          cambio_apoyos: number
+          fecha_interaccion?: string | null
+          id?: never
+          id_propuesta: number
+          id_usuario: number
+          voto_tipo: string
+        }
+        Update: {
+          cambio_apoyos?: number
+          fecha_interaccion?: string | null
+          id?: never
+          id_propuesta?: number
+          id_usuario?: number
+          voto_tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "propuesta_actividad_id_propuesta_fkey"
+            columns: ["id_propuesta"]
+            isOneToOne: false
+            referencedRelation: "propuestas"
+            referencedColumns: ["id_propuesta"]
+          },
+          {
+            foreignKeyName: "propuesta_actividad_id_usuario_fkey"
+            columns: ["id_usuario"]
+            isOneToOne: false
+            referencedRelation: "usuarios"
+            referencedColumns: ["id_correlativo"]
+          },
+        ]
+      }
       propuestas: {
         Row: {
           categoria: string
