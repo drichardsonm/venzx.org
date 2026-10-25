@@ -5,7 +5,7 @@ const MODEL = "openai/gpt-6-astra";
 
 /** Streams a Lovable AI call and returns the final text (server-only). */
 export async function aiText(system: string, prompt: string): Promise<string> {
-  const apiKey = process.env.LOVABLE_API_KEY;
+  const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) throw new Error("AI no configurada");
   let runId: string | undefined;
   const provider = createOpenAI({
@@ -21,7 +21,7 @@ export async function aiText(system: string, prompt: string): Promise<string> {
     },
   });
   const result = streamText({
-    model: provider.responses(MODEL),
+    model: provider.responses(MODEL) as unknown as Parameters<typeof streamText>[0]["model"],
     system,
     prompt,
     providerOptions: {

@@ -65,7 +65,7 @@ function Explorar() {
   useEffect(() => {
     const el = sentinel.current;
     if (!el) return;
-    const io = new IntersectionObserver((e) => e[0].isIntersecting && q.hasNextPage && !q.isFetchingNextPage && q.fetchNextPage());
+    const io = new IntersectionObserver((e) => e[0]?.isIntersecting && q.hasNextPage && !q.isFetchingNextPage && q.fetchNextPage());
     io.observe(el);
     return () => io.disconnect();
   }, [q]);

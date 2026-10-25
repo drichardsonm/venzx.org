@@ -39,9 +39,9 @@ function Home() {
   const activeSecret = id.secret ?? secret;
 
   async function send(tipo: (typeof ACTIONS)[number]["tipo"]) {
-    if (text.trim().length < 5) return toast.error("Escribe tu propuesta (mín. 5 caracteres)");
+    if (text.trim().length < 5) { toast.error("Escribe tu propuesta (mín. 5 caracteres)"); return; }
     const s = activeSecret.trim() || generatePhrase();
-    if (s.length < 6) return toast.error("La palabra secreta necesita al menos 6 caracteres");
+    if (s.length < 6) { toast.error("La palabra secreta necesita al menos 6 caracteres"); return; }
     setBusy(tipo);
     try {
       const r = await submit({ data: { contenido: text, tipo, secret: s } });

@@ -32,5 +32,6 @@ const WORDS = ["araguaney", "cacao", "turpial", "tepuy", "chigüire", "orinoco",
 export function generatePhrase() {
   const r = new Uint32Array(4);
   crypto.getRandomValues(r);
-  return `${WORDS[r[0] % WORDS.length]}-${WORDS[r[1] % WORDS.length]}-${WORDS[r[2] % WORDS.length]}-${(r[3] % 900) + 100}`;
+  const [a = 0, b = 0, c = 0, d = 0] = r;
+  return `${WORDS[a % WORDS.length]}-${WORDS[b % WORDS.length]}-${WORDS[c % WORDS.length]}-${(d % 900) + 100}`;
 }

@@ -12,7 +12,7 @@ export function SecretGate({
   onSubmit: (secret: string) => void;
   label?: string;
   busy?: boolean;
-  hint?: string;
+  hint?: string | undefined;
 }) {
   const [v, setV] = useState("");
   const [show, setShow] = useState(false);

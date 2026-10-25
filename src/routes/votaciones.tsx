@@ -46,7 +46,7 @@ function Votaciones() {
     setBusy(true);
     try {
       const r = await unlock({ data: { secret: s } });
-      if (!r) return toast.error("Palabra secreta no encontrada");
+      if (!r) { toast.error("Palabra secreta no encontrada"); return; }
       setVoter(r);
       setSecret(s);
       id.set(s, r.user);
