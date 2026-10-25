@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Propón tu idea — Voz Anónima" },
+      { title: "Propón tu idea — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { name: "description", content: "Escribe tu propuesta y súmala a la voz ciudadana de forma 100% anónima." },
-      { property: "og:title", content: "Propón tu idea — Voz Anónima" },
+      { property: "og:title", content: "Propón tu idea — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { property: "og:description", content: "Propuestas ciudadanas anónimas agregadas con IA." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -59,7 +59,7 @@ function Home() {
 
   function download() {
     if (!ticket) return;
-    const body = `VOZ ANÓNIMA — TICKET DIGITAL\n============================\nIdentidad pública: User #${ticket.n}\nPalabra secreta:   ${ticket.secret}\nEmitido:           ${new Date().toLocaleString("es-VE")}\n\nGuarda este archivo en un lugar seguro.\nNo podemos recuperar tu palabra secreta:\nsolo almacenamos su huella SHA-256.\n`;
+    const body = `VENZX — TICKET DIGITAL\nIdeas anónimas, soluciones reales y participación ciudadana\n============================\nIdentidad pública: User #${ticket.n}\nPalabra secreta:   ${ticket.secret}\nEmitido:           ${new Date().toLocaleString("es-VE")}\n\nGuarda este archivo en un lugar seguro.\nNo podemos recuperar tu palabra secreta:\nsolo almacenamos su huella SHA-256.\n`;
     const url = URL.createObjectURL(new Blob([body], { type: "text/plain" }));
     const a = document.createElement("a");
     a.href = url;

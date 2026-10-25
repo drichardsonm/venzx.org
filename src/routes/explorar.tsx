@@ -18,9 +18,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/explorar")({
   head: () => ({
     meta: [
-      { title: "Explorar propuestas — Voz Anónima" },
+      { title: "Explorar propuestas — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { name: "description", content: "Feed de propuestas ciudadanas filtrable por género, edad, categoría y ubicación." },
-      { property: "og:title", content: "Explorar propuestas — Voz Anónima" },
+      { property: "og:title", content: "Explorar propuestas — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { property: "og:description", content: "Descubre qué propone tu comunidad." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

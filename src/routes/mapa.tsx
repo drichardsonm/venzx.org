@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/mapa")({
   head: () => ({
     meta: [
-      { title: "Mapa de calor e IA — Voz Anónima" },
+      { title: "Mapa de calor e IA — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { name: "description", content: "Mapa de Venezuela con prioridades ciudadanas, nube de temas y propuesta más apoyada analizadas por IA." },
-      { property: "og:title", content: "Mapa de calor e IA — Voz Anónima" },
+      { property: "og:title", content: "Mapa de calor e IA — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { property: "og:description", content: "Pregunta en lenguaje natural qué necesita cada región." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

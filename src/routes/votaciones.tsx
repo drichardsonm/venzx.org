@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/votaciones")({
   head: () => ({
     meta: [
-      { title: "Centro de votación — Voz Anónima" },
+      { title: "Centro de votación — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { name: "description", content: "Votaciones nacionales, regionales y locales verificables con resultados anonimizados descargables." },
-      { property: "og:title", content: "Centro de votación — Voz Anónima" },
+      { property: "og:title", content: "Centro de votación — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { property: "og:description", content: "Vota anónimamente y audita los resultados." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
