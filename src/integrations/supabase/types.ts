@@ -14,7 +14,188 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      apoyos_propuestas: {
+        Row: {
+          id_apoyo: number
+          id_propuesta: number
+          id_usuario: number
+          voto_tipo: string
+        }
+        Insert: {
+          id_apoyo?: number
+          id_propuesta: number
+          id_usuario: number
+          voto_tipo: string
+        }
+        Update: {
+          id_apoyo?: number
+          id_propuesta?: number
+          id_usuario?: number
+          voto_tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "apoyos_propuestas_id_propuesta_fkey"
+            columns: ["id_propuesta"]
+            isOneToOne: false
+            referencedRelation: "propuestas"
+            referencedColumns: ["id_propuesta"]
+          },
+          {
+            foreignKeyName: "apoyos_propuestas_id_usuario_fkey"
+            columns: ["id_usuario"]
+            isOneToOne: false
+            referencedRelation: "usuarios"
+            referencedColumns: ["id_correlativo"]
+          },
+        ]
+      }
+      propuestas: {
+        Row: {
+          categoria: string
+          contenido: string
+          estado_propuesta: string
+          fecha_creacion: string
+          id_propuesta: number
+          id_usuario: number
+          tipo_intencion: string
+        }
+        Insert: {
+          categoria?: string
+          contenido: string
+          estado_propuesta?: string
+          fecha_creacion?: string
+          id_propuesta?: number
+          id_usuario: number
+          tipo_intencion: string
+        }
+        Update: {
+          categoria?: string
+          contenido?: string
+          estado_propuesta?: string
+          fecha_creacion?: string
+          id_propuesta?: number
+          id_usuario?: number
+          tipo_intencion?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "propuestas_id_usuario_fkey"
+            columns: ["id_usuario"]
+            isOneToOne: false
+            referencedRelation: "usuarios"
+            referencedColumns: ["id_correlativo"]
+          },
+        ]
+      }
+      usuarios: {
+        Row: {
+          edad_rango: string | null
+          estado: string | null
+          fecha_registro: string
+          genero: string | null
+          id_correlativo: number
+          intereses: string[]
+          municipio: string | null
+          parroquia: string | null
+          secreto_hash: string
+        }
+        Insert: {
+          edad_rango?: string | null
+          estado?: string | null
+          fecha_registro?: string
+          genero?: string | null
+          id_correlativo?: number
+          intereses?: string[]
+          municipio?: string | null
+          parroquia?: string | null
+          secreto_hash: string
+        }
+        Update: {
+          edad_rango?: string | null
+          estado?: string | null
+          fecha_registro?: string
+          genero?: string | null
+          id_correlativo?: number
+          intereses?: string[]
+          municipio?: string | null
+          parroquia?: string | null
+          secreto_hash?: string
+        }
+        Relationships: []
+      }
+      votaciones_convocadas: {
+        Row: {
+          activa: boolean
+          alcance_geografico: string
+          descripcion: string | null
+          estado_restriccion: string | null
+          fecha_fin: string
+          fecha_inicio: string
+          id_votacion: number
+          municipio_restriccion: string | null
+          titulo: string
+        }
+        Insert: {
+          activa?: boolean
+          alcance_geografico?: string
+          descripcion?: string | null
+          estado_restriccion?: string | null
+          fecha_fin: string
+          fecha_inicio?: string
+          id_votacion?: number
+          municipio_restriccion?: string | null
+          titulo: string
+        }
+        Update: {
+          activa?: boolean
+          alcance_geografico?: string
+          descripcion?: string | null
+          estado_restriccion?: string | null
+          fecha_fin?: string
+          fecha_inicio?: string
+          id_votacion?: number
+          municipio_restriccion?: string | null
+          titulo?: string
+        }
+        Relationships: []
+      }
+      votos_finales: {
+        Row: {
+          id_usuario: number
+          id_votacion: number
+          id_voto: number
+          opcion_seleccionada: string
+        }
+        Insert: {
+          id_usuario: number
+          id_votacion: number
+          id_voto?: number
+          opcion_seleccionada: string
+        }
+        Update: {
+          id_usuario?: number
+          id_votacion?: number
+          id_voto?: number
+          opcion_seleccionada?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "votos_finales_id_usuario_fkey"
+            columns: ["id_usuario"]
+            isOneToOne: false
+            referencedRelation: "usuarios"
+            referencedColumns: ["id_correlativo"]
+          },
+          {
+            foreignKeyName: "votos_finales_id_votacion_fkey"
+            columns: ["id_votacion"]
+            isOneToOne: false
+            referencedRelation: "votaciones_convocadas"
+            referencedColumns: ["id_votacion"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
