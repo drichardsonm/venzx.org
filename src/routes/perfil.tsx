@@ -18,6 +18,8 @@ export const Route = createFileRoute("/perfil")({
       { name: "description", content: "Carga tu identidad con tu palabra secreta y añade datos demográficos anónimos." },
       { property: "og:title", content: "Perfil anónimo — Voz Anónima" },
       { property: "og:description", content: "Tu identidad es solo un número." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Perfil,

@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Escribe tu propuesta y súmala a la voz ciudadana de forma 100% anónima." },
       { property: "og:title", content: "Propón tu idea — Voz Anónima" },
       { property: "og:description", content: "Propuestas ciudadanas anónimas agregadas con IA." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,

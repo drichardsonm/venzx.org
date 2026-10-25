@@ -17,6 +17,8 @@ export const Route = createFileRoute("/mapa")({
       { name: "description", content: "Mapa de Venezuela con prioridades ciudadanas, nube de temas y propuesta más apoyada analizadas por IA." },
       { property: "og:title", content: "Mapa de calor e IA — Voz Anónima" },
       { property: "og:description", content: "Pregunta en lenguaje natural qué necesita cada región." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Mapa,
