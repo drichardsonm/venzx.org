@@ -81,9 +81,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Voz Anónima — Propuestas ciudadanas" },
+      { title: "VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { name: "description", content: "Plataforma cívica anónima para proponer, apoyar y votar ideas en Venezuela." },
-      { property: "og:title", content: "Voz Anónima" },
+      { property: "og:title", content: "VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { property: "og:description", content: "Propón, apoya y vota de forma 100% anónima." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/perfil")({
   head: () => ({
     meta: [
-      { title: "Perfil anónimo — Voz Anónima" },
+      { title: "Perfil anónimo — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { name: "description", content: "Carga tu identidad con tu palabra secreta y añade datos demográficos anónimos." },
-      { property: "og:title", content: "Perfil anónimo — Voz Anónima" },
+      { property: "og:title", content: "Perfil anónimo — VENZX: Ideas anónimas, soluciones reales y participación ciudadana" },
       { property: "og:description", content: "Tu identidad es solo un número." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

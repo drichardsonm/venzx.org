@@ -18,10 +18,15 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid size-8 place-items-center rounded-lg bg-ink text-primary-foreground">
+            <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-ink text-primary-foreground">
               <ShieldCheck className="size-4" />
             </span>
-            <span className="font-display text-lg font-bold">Voz Anónima</span>
+            <span className="flex min-w-0 flex-col leading-tight">
+              <span className="font-display text-lg font-bold">VENZX</span>
+              <span className="hidden truncate text-[11px] font-medium text-muted-foreground sm:block">
+                Ideas anónimas, soluciones reales y participación ciudadana
+              </span>
+            </span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
             {NAV.map((n) => (
