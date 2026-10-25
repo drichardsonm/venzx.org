@@ -10,7 +10,7 @@ export const VENEZUELA: Geo = {
   Bolívar: { Caroní: ["Cachamay", "Unare", "Vista al Sol"], Heres: ["Catedral", "Agua Salada"] },
   Carabobo: { Valencia: ["San José", "Catedral", "Rafael Urdaneta"], "Puerto Cabello": ["Juan José Flores", "Fraternidad"] },
   Cojedes: { "Ezequiel Zamora": ["San Carlos de Austria", "Juan Ángel Bravo"], Tinaquillo: ["Tinaquillo"] },
-  "Delta Amacuro": { Tucupita: ["San José", "Leonardo Ruiz Pineda"], Antonio_Díaz: ["Curiapo"] },
+  "Delta Amacuro": { Tucupita: ["San José", "Leonardo Ruiz Pineda"], "Antonio Díaz": ["Curiapo"] },
   "Distrito Capital": { Libertador: ["Catedral", "El Recreo", "Petare", "Sucre", "23 de Enero"] },
   Falcón: { Miranda: ["San Antonio", "Santa Ana"], Carirubana: ["Punto Fijo", "Carirubana"] },
   Guárico: { "Juan Germán Roscio": ["San Juan de los Morros", "Parapara"], Infante: ["Valle de la Pascua"] },
