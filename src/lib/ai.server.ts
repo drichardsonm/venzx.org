@@ -3,8 +3,45 @@ import { streamText } from "ai";
 
 const MODEL = "openai/gpt-6-astra";
 
-/** Streams a Lovable AI call and returns the final text (server-only). */
+/** Self-hosted Ollama (OpenAI-compatible /v1), optionally behind Cloudflare Access. */
+async function ollamaText(system: string, prompt: string): Promise<string> {
+  const base = (process.env["OLLAMA_BASE_URL"] ?? "").replace(/\/+$/, "");
+  const model = process.env["OLLAMA_MODEL"] || "llama3.2:3b";
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  const cfId = process.env["CF_ACCESS_CLIENT_ID"];
+  const cfSecret = process.env["CF_ACCESS_CLIENT_SECRET"];
+  if (cfId && cfSecret) {
+    headers["CF-Access-Client-Id"] = cfId;
+    headers["CF-Access-Client-Secret"] = cfSecret;
+  }
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), Number(process.env["OLLAMA_TIMEOUT_MS"] || 45000));
+  try {
+    const res = await fetch(`${base}/v1/chat/completions`, {
+      method: "POST",
+      headers,
+      signal: ctrl.signal,
+      body: JSON.stringify({
+        model,
+        stream: false,
+        temperature: 0.2,
+        messages: [
+          { role: "system", content: system },
+          { role: "user", content: prompt },
+        ],
+      }),
+    });
+    if (!res.ok) throw new Error(`Ollama respondió ${res.status}`);
+    const json = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+    return json.choices?.[0]?.message?.content ?? "";
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** Returns the final AI text (server-only). Uses Ollama when OLLAMA_BASE_URL is set. */
 export async function aiText(system: string, prompt: string): Promise<string> {
+  if (process.env["OLLAMA_BASE_URL"]) return ollamaText(system, prompt);
   const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) throw new Error("AI no configurada");
   let runId: string | undefined;

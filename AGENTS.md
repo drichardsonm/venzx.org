@@ -15,3 +15,4 @@
 - AI calls (classification, insights) live in `src/lib/ai.server.ts` and must fail soft with computed fallbacks.
 - Proposal reaction history is recorded by a database trigger, including preference changes but excluding duplicate same-action submissions; unknown legacy timestamps remain null to avoid invented history.
 - The proposal activity helper owns cumulative positive support counting and public-author formatting; the detailed-view component uses Recharts and consumes only explicitly projected anonymous metadata.
+- AI provider is chosen at runtime: Ollama (OpenAI-compatible, optional Cloudflare Access service-token headers) when OLLAMA_BASE_URL is set, else Lovable AI; self-hosting assets (schema SQL, env template, guide) live in `selfhost/` and must be kept in sync with schema changes.
