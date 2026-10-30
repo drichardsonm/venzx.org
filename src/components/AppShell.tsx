@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Lightbulb, UserRound, Rows3, Map, Landmark, ShieldCheck } from "lucide-react";
+import { Lightbulb, UserRound, Rows3, Map, Landmark, ShieldCheck, Heart } from "lucide-react";
 import type { ReactNode } from "react";
 import { useIdentity } from "@/lib/identity";
 
@@ -40,12 +40,32 @@ export function AppShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <span className="rounded-full border bg-card px-3 py-1 font-mono text-xs">
-            {userNumber ? `User #${userNumber}` : "Anónimo"}
-          </span>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://www.paypal.com/donate/?hosted_button_id=V9JTERH8FBTTG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden items-center gap-1.5 rounded-full bg-want px-3 py-1.5 text-sm font-semibold text-want-foreground shadow-soft transition hover:opacity-90 sm:inline-flex"
+            >
+              <Heart className="size-3.5" /> Donar
+            </a>
+            <span className="rounded-full border bg-card px-3 py-1 font-mono text-xs">
+              {userNumber ? `User #${userNumber}` : "Anónimo"}
+            </span>
+          </div>
         </div>
       </header>
       <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+      <footer className="mx-auto max-w-6xl px-4 pb-6 text-center text-xs text-muted-foreground">
+        <a
+          href="https://www.paypal.com/donate/?hosted_button_id=V9JTERH8FBTTG"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-2"
+        >
+          <Heart className="size-3.5" /> Apoya el proyecto con una donación
+        </a>
+      </footer>
       <nav className="fixed inset-x-0 bottom-0 z-30 border-t bg-card/95 backdrop-blur md:hidden">
         <div className="grid grid-cols-5">
           {NAV.map((n) => (
