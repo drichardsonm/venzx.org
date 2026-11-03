@@ -23,6 +23,22 @@ Si la IA falla o tarda, la app sigue funcionando con resultados calculados.
   (La app nunca consulta tablas desde el navegador; todo pasa por el servidor Node.)
 - Si el servidor Node está en la misma máquina, usa `SUPABASE_URL=http://localhost:8000`.
 
+## 3b. El aviso de Android "quiere acceder a otros servicios y apps en este dispositivo"
+Si ese aviso aparece al abrir la web (sin tocar nada), la causa es casi seguro que
+`VITE_SUPABASE_URL` en tu `.env` apunta a `localhost` o a una IP local (192.168.x.x).
+Esa variable viaja al navegador del visitante, y su teléfono intenta conectarse a
+un servicio dentro de su propio dispositivo/red: de ahí el permiso "aplicaciones
+en el dispositivo".
+
+Solución:
+1. En `.env`, pon `VITE_SUPABASE_URL=https://supabase.tudominio.com` (el hostname
+   público del túnel, con HTTPS).
+2. `SUPABASE_URL` (sin `VITE_`) sí puede quedarse en `http://localhost:8000`,
+   porque solo la usa tu servidor Node.
+3. Recompila: `NITRO_PRESET=node-server npm run build` y reinicia el servidor.
+   Las variables `VITE_*` se incrustan al compilar; editar el `.env` sin
+   recompilar no cambia nada.
+
 ## 4. Compilar y ejecutar la app
 ```bash
 cp selfhost/.env.example .env      # y rellénalo
