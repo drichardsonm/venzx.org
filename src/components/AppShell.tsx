@@ -42,7 +42,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </nav>
           <div className="flex items-center gap-2">
             <a
-              href="https://www.paypal.com/donate/?hosted_button_id=V9JTERH8FBTTG"
+              href="https://paypal.me/drichm"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden items-center gap-1.5 rounded-full bg-want px-3 py-1.5 text-sm font-semibold text-want-foreground shadow-soft transition hover:opacity-90 sm:inline-flex"
@@ -58,7 +58,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
       <footer className="mx-auto max-w-6xl px-4 pb-6 text-center text-xs text-muted-foreground">
         <a
-          href="https://www.paypal.com/donate/?hosted_button_id=V9JTERH8FBTTG"
+          href="https://paypal.me/drichm"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-2"
