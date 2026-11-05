@@ -8,6 +8,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import fs from "fs";
 import path from "path";
 
+const hasCerts = fs.existsSync(path.resolve(process.cwd(), "key.pem")) && fs.existsSync(path.resolve(process.cwd(), "cert.pem"));
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
@@ -15,7 +17,8 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // Pasamos la configuración adicional nativa de Vite aquí:
-  vite: {
+  // Solo se aplica en tu servidor, donde existen key.pem y cert.pem
+  vite: hasCerts ? {
     server: {
       https: {
         key: fs.readFileSync(path.resolve(process.cwd(), "key.pem")),
@@ -35,5 +38,5 @@ export default defineConfig({
         clientPort: 443,         // Cloudflare maneja el tráfico SSL del navegador en el puerto estándar 443
       },
     },
-  },
+  } : {},
 });
